@@ -1,0 +1,20 @@
+<h1>Book Management</h1>
+
+{{#if error}}<p style="color:red"><b>{{error}}</b></p>{{/if}}
+<p>Session ID: <code>{{sid}}</code> | Visits in this session: {{views}}</p>
+
+<form method="POST" action="/books">
+  <input name="code" placeholder="Code (must start with {{prefix}})" required>
+  <input name="name" placeholder="Book name" required>
+  <input name="price" type="number" step="0.01" min="0" placeholder="Base price" required>
+  <button type="submit">Add</button>
+</form>
+
+<table border="1" cellpadding="6" style="margin-top:20px; border-collapse:collapse;">
+  <tr><th>Code</th><th>Name</th><th>Base price</th><th>VAT</th><th>Price after tax</th></tr>
+  {{#each books}}
+  <tr>
+    <td>{{code}}</td><td>{{name}}</td><td>{{price}}</td><td>{{vat}}%</td><td>{{priceAfterTax}}</td>
+  </tr>
+  {{/each}}
+</table>
